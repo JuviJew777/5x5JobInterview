@@ -20,12 +20,14 @@ public class BulletScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Always send the bullet up when is created
         rb.velocity = Vector2.up.normalized * bulletSpeed * Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Destroy the bullet in 5 seconds if this didn't hit anything
         Destroy(gameObject, 5);
     }
 
@@ -34,8 +36,9 @@ public class BulletScript : MonoBehaviour
         if (collision.tag == "enemy")
         {
             
-            //Debug.Log("Choque");
-            collision.GetComponent<Enemy>().AnimActivator();
+            //If bullet hits some enemy activate the enemy destroy animation
+            collision.GetComponent<Enemy>().readHit();
+            //if the bullet penetration is lees than 0 destroy the bullet
             if (penetration <= 0)
             {
                 Destroy(gameObject);

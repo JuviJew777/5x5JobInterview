@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class ReadFile : MonoBehaviour
 {
@@ -11,15 +12,16 @@ public class ReadFile : MonoBehaviour
 
     public string[] Mymap { get => mymap; set => mymap = value; }
 
+    [SerializeField]
+    Text Warning;
+
     GameObject MasterManager;
     // Start is called before the first frame update
     void Start()
     {
-        string readFile = Application.streamingAssetsPath + "/Files/" + "Maps.txt";
-        string Allmaps = File.ReadAllText(readFile);
-        int startLevel;
-        maps = Allmaps.Split('-');
+        MapToTxt();
         MasterManager = GameObject.FindGameObjectWithTag("Manager");
+        int startLevel;
         if (MasterManager != null)
         {
             startLevel = MasterManager.GetComponent<MainManager>().SelectedLevel;
@@ -28,8 +30,23 @@ public class ReadFile : MonoBehaviour
             startLevel = 0;
 
         Mymap = readMap(startLevel);
+  
+        
+        
     }
 
+    void MapToTxt()
+    {
+        TextAsset readFile = Resources.Load<TextAsset>("Maps") as TextAsset;
+        
+
+        string Allmaps = readFile.text;
+        maps = Allmaps.Split('-');
+       
+
+
+        //Warning.text = readFile;
+    }
 
     public void LevelUp(int level)
     {

@@ -29,6 +29,11 @@ public class Enemy : MonoBehaviour
             type -= 1;
             valueChanged = true;
         }
+
+        if(life <= 0)
+        {
+            AnimActivator();
+        }
     }
 
     float readDistance(Vector3 Player)
@@ -48,7 +53,7 @@ public class Enemy : MonoBehaviour
     
 
 
-    public void AnimActivator()
+    void AnimActivator()
     {
 
         Animator myAnim = GetComponent<Animator>();
@@ -56,6 +61,11 @@ public class Enemy : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         //Debug.Log(type);
 
+    }
+
+    public void readHit()
+    {
+        life--;
     }
 
     void SpawnBonus(float randValue0)

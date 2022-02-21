@@ -12,36 +12,56 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     float defaultFireRate;
     
-    float fireRate;
+    bool canFire;
      
 
     // Start is called before the first frame update
     void Start()
     {
-        fireRate = defaultFireRate;
+        canFire = true;
         currentBullet = bullets[0];
     }
 
 
 
     // Update is called once per frame
-    void Update()
+    void Update() //Listen to input and shoot if W or Up Arrow is true
     {
-        if(fireRate <= 0)
+        if (canFire)
         {
             if(Input.GetKeyDown(KeyCode.W) == true || Input.GetKeyDown(KeyCode.UpArrow) == true)
             {
                 GameObject newBullet = Instantiate(currentBullet);
                 newBullet.name = "Bullet";
-                newBullet.transform.position = gameObject.transform.position + new Vector3(0,.5f,0);
-                fireRate = defaultFireRate;
+                newBullet.transform.position = gameObject.transform.position + new Vector3(0, .5f, 0);
+                canFire = false;
+                StartCoroutine(PrepareFire());
             }
         }
-        else
-            fireRate -= 1 * Time.deltaTime;
+        
+        
+        
     }
 
-    public void SetGunType(int type)
+    public void FireFire() //Createa prefab of the bullet
+    {
+        if (canFire)
+        {
+            GameObject newBullet = Instantiate(currentBullet);
+            newBullet.name = "Bullet";
+            newBullet.transform.position = gameObject.transform.position + new Vector3(0, .5f, 0);
+            canFire = false;
+            StartCoroutine(PrepareFire());
+        }
+    }
+
+    IEnumerator PrepareFire() //Set time of shoot rate
+    {
+        yield return new WaitForSeconds(defaultFireRate);
+        canFire = true;
+    }
+
+    public void SetGunType(int type) //Change the bullet if bonus catched
     {
         if(type < bullets.Length)
         {

@@ -19,6 +19,7 @@ public class SplashScreen : MonoBehaviour
 
     void DeactivateObject()
     {
+        //Read for the SplashScreen's end
         GameObject Manager = GameObject.FindGameObjectWithTag("Manager");
         Manager.GetComponent<SplashManager>().SplashEnded = true;
         gameObject.SetActive(false);

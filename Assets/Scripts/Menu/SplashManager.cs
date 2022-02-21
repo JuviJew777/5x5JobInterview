@@ -18,11 +18,12 @@ public class SplashManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if(Cortina == null)
         {
             Cortina = GameObject.Find("SplashScreen");
         }
-
+        //When the Splash Screen is over destroy it
         if (Cortina != null && splashEnded)
         {
             Debug.Log(splashEnded);

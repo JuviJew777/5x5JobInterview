@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityStandardAssets.CrossPlatformInput;
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -33,13 +33,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"),0);
+        // Movement is equal to the axis Horizontal
+        //If you need to use keyboard change 'CrossPlataformInputManager' to 'Input'
+        movement = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"),0);
         
        
     }
 
     
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Read colitions with bonus or enemies
     {
         if (collision.transform.CompareTag("Bonus"))
         {
