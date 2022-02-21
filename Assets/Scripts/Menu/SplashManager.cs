@@ -21,7 +21,7 @@ public class SplashManager : MonoBehaviour
 
         if(Cortina == null)
         {
-            Cortina = GameObject.Find("SplashScreen");
+            Cortina = GameObject.Find("Cortina");
         }
         //When the Splash Screen is over destroy it
         if (Cortina != null && splashEnded)
