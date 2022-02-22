@@ -18,7 +18,7 @@ public class SplashManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        //If Cortina is null serch it
         if(Cortina == null)
         {
             Cortina = GameObject.Find("Cortina");

@@ -35,6 +35,7 @@ public class ReadFile : MonoBehaviour
         
     }
 
+    //Reads the txtFile and separate the levels into a string array
     void MapToTxt()
     {
         TextAsset readFile = Resources.Load<TextAsset>("Maps") as TextAsset;
@@ -48,6 +49,7 @@ public class ReadFile : MonoBehaviour
         //Warning.text = readFile;
     }
 
+    //public function for level reading
     public void LevelUp(int level)
     {
 
@@ -55,6 +57,8 @@ public class ReadFile : MonoBehaviour
         mymap = readMap(level);
     }
 
+
+    //Read the selected level in the string array of maps
     string[] readMap(int level)
     {
         string[] mapLines = maps[level].Split('\n');

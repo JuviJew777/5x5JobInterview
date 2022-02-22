@@ -16,6 +16,7 @@ public class GOverAnim : MonoBehaviour
     GameObject MainManager;
     private void Start()
     {
+        //Set Animations Variables
         myAnim = GetComponent<Animator>();
         scoreGo.text = "Final Score: " + Manager.GetComponent<ScoreManaging>().Score.ToString();
         MainManager = GameObject.FindGameObjectWithTag("Manager");
@@ -23,6 +24,7 @@ public class GOverAnim : MonoBehaviour
 
     public void GoOut()
     {
+        //Change Animation Bool State
         myAnim.SetBool("Reset", true);
     }
 
@@ -33,6 +35,7 @@ public class GOverAnim : MonoBehaviour
 
     void ResetGame()
     {
+        //Reset the level from level 1
         if(MainManager != null)
         {
             MainManager.GetComponent<MainManager>().SelectedLevel = 0;

@@ -18,12 +18,15 @@ public class ButtonManagerMenu : MonoBehaviour
         
     }
 
+    //Call and set the Main Manager level value
+    //Then change Scene
     public void LevelSelect(int level)
     {
         MenuManager.GetComponent<MainManager>().SelectedLevel = level;
         SceneManager.LoadScene(1);
     }
 
+    //Change scene to Credits
     public void Credtis()
     {
 

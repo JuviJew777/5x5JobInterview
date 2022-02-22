@@ -20,18 +20,20 @@ public class ScoreManaging : MonoBehaviour
         Score = 0;
     }
 
-    // Update is called once per frame
+    //The text object will show te current score 
     void FixedUpdate()
     {
 
         scoreTxt.text = "Score: " + (Score);
     }
 
+    //Add score to de variable
     public void AddScore(int Score)
     {
         this.Score += Score * multiplier;
     }
 
+    //Read for taken bonus
     public void StartBonus(Bonus currentBonus)
     {
         switch (currentBonus.Type)
@@ -50,6 +52,8 @@ public class ScoreManaging : MonoBehaviour
         }
     }
 
+
+    //Corrutine for New Gun 
     IEnumerator ChangeGun(int Type)
     {
 
@@ -64,6 +68,8 @@ public class ScoreManaging : MonoBehaviour
         }
         
     }
+
+    //Corrutine for 2XP
     IEnumerator StartMultiplier(float time)
     {
         multiplier = 2;

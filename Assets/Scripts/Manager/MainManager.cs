@@ -10,6 +10,7 @@ public class MainManager : MonoBehaviour
 
     private void Awake()
     {
+        //Create dont destroy on load Manager
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Manager");
 
         if(objs.Length > 1)

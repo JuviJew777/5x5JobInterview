@@ -16,7 +16,7 @@ public class CreditsManagment : MonoBehaviour
         
     }
 
-    void EndCredits()
+    void EndCredits()//When credidts end load menu
     {
         SceneManager.LoadScene(0);
     }

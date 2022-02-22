@@ -10,6 +10,8 @@ public class SplashScreen : MonoBehaviour
        
     }
 
+
+    //Managment of Splash Screens Animations
     void ShowMenu()
     {
         transform.parent.gameObject.GetComponent<Animator>().SetBool("Start", true);

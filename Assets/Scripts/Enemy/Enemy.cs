@@ -24,11 +24,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(readDistance(Player.transform.position) < 5 && !valueChanged)
-        {
-            type -= 1;
-            valueChanged = true;
-        }
+        //If distance between enemy and player is less than 5 points get down to 0
+        readDistance(Player.transform.position);
 
         if(life <= 0)
         {
@@ -36,11 +33,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    float readDistance(Vector3 Player)
+    void readDistance(Vector3 Player)
     {
         float res = Vector3.Distance(Player, gameObject.transform.position);
 
-        return res;
+        if (res < 5 && !valueChanged)
+        {
+            type -= 1;
+            valueChanged = true;
+        }
+        
     }
 
     public Enemy(int ID, int Life, int type)
@@ -55,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     void AnimActivator()
     {
-
+        //Activate the enemy destroy animation
         Animator myAnim = GetComponent<Animator>();
         myAnim.SetBool("Destroyed", true);
         GetComponent<CircleCollider2D>().enabled = false;
@@ -70,14 +72,15 @@ public class Enemy : MonoBehaviour
 
     void SpawnBonus(float randValue0)
     {
+        //is 10% probability of spawn gun Bonus
         Debug.Log("Destruido");
         if(randValue0 > .9)
         {
             GameObject newBonus = Instantiate(BonusPrefabs[1]);
             newBonus.transform.position = gameObject.transform.position;
         }
-
-        else if(randValue0 > .7)
+        //is 30% probability of spawn 2Xp
+        else if (randValue0 > .7)
         {
             GameObject newBonus = Instantiate(BonusPrefabs[0]);
             newBonus.transform.position = gameObject.transform.position;
@@ -85,6 +88,7 @@ public class Enemy : MonoBehaviour
     }
     void DestroyEnemy()
     {
+        //Destroy this gameobject
         SpawnBonus(Random.value);
         GameObject myManager = GameObject.Find("Manager");
         myManager.GetComponent<ScoreManaging>().AddScore(Type);

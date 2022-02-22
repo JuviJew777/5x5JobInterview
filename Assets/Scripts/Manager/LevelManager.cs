@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Sets Variables at start
         MasterManager = GameObject.FindGameObjectWithTag("Manager");
         if (MasterManager != null)
         {
@@ -32,6 +33,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //If no enemys in screen Calls Next Level
         if (mySpawner.transform.childCount <= 0)
         {
             if (CurrentLevel < maxlevel)
@@ -49,12 +51,14 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
+        //If we lose or win all levels the game over will show up
         enemySpawner.SetActive(false);
         gameOver.SetActive(true);
     }
 
     public void RestartGame()
     {
+        //restart Game with the next level 
         CurrentLevel++;
         GetComponent<ReadFile>().LevelUp(CurrentLevel);
         enemySpawner.GetComponent<EnemySpawner>().StartEnemys();

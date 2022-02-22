@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //move down enemy
         rb.velocity = Vector2.down * enemySpeed * Time.deltaTime;
 
     }
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("DeadZone"))
         {
+            //If enemy reach the deadzone the game ends
             Manager.GetComponent<LevelManager>().GameOver();
         }
     }
